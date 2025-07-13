@@ -60,4 +60,4 @@ conda install --file requirements.txt
 4. Upload a clear facial photo to view the analysis results
 
 ## Example
-![1752409204609](image/README/1752409204609.png)
+![1752409204609](image/1752409204609.png)
