@@ -17,6 +17,8 @@ A Streamlit-based application that analyzes uploaded facial photos and generates
 
 1. Clone the repository:
    ```bash
+   git clone https://github.com/Mingyang0018/skin_analysis_app.git
+   cd skin_analysis_app
    git clone https://github.com/codeniko/shape_predictor_81_face_landmarks.git
    ```
 2. Install dependencies:
