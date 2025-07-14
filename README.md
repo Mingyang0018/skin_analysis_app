@@ -18,7 +18,7 @@ A Streamlit-based application that analyzes uploaded facial photos and generates
 
 ### 1. Set Up Conda Environment (Recommended)
 ```bash
-conda create -n skin_analysis_app python=3.8
+conda create -n skin_analysis_app python=3.12
 conda activate skin_analysis_app
 ```
 
