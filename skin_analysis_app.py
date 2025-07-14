@@ -73,7 +73,7 @@ def draw_mask_contour(img, mask, label=None):
         cv2.drawContours(img, [cnt], -1, (0, 255, 0), 2)
         x, y = cnt[0][0]
         if label:
-            cv2.putText(img, label, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255), 2)
+            cv2.putText(img, label, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
 
 def main():
     st.title("skin_analysis_app")
@@ -81,12 +81,17 @@ def main():
     uploaded_file = st.file_uploader("Upload Image", type=["jpg", "png", "jpeg", "bmp", "tiff", "webp"])
 
     if uploaded_file is not None:
-        st.image(uploaded_file, caption=None, use_column_width=True)
+        st.image(uploaded_file, caption=None)
         file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
         image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
         annotated_image = image.copy()
 
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        # st.write(f"Image dtype: {image.dtype}, Shape: {image.shape}")
+        # st.write(f"Gray image dtype: {gray.dtype}, Shape: {gray.shape}")
+        if gray.dtype != np.uint8:
+            st.warning("Gray image is not uint8, converting...")
+            gray = gray.astype(np.uint8)
         faces = detector(gray)
         if len(faces) == 0:
             st.error("No face detected. Please upload a clear photo of a face.")
@@ -156,7 +161,7 @@ def main():
         dryness_score = texture_score
 
         # 显示带标注的图像
-        st.image(annotated_image, caption=None, channels="BGR", use_column_width=True)
+        st.image(annotated_image, caption=None, channels="BGR", )
 
         # 显示分析结果
         st.subheader("Skin Analysis Results")
